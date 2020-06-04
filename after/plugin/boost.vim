@@ -161,7 +161,7 @@ call NERDTreeAddKeyMap({
       \ 'quickhelpText': 'Copying the absolute path to reg.',
       \ 'scope': 'Node' })
 call NERDTreeAddKeyMap({
-      \ 'key': 'gs',
+      \ 'key': 'tt',
       \ 'callback': 'NERDTreeSearchWithLeaderfRg',
       \ 'quickhelpText': 'Search with leaderf.',
       \ 'scope': 'Node' })
