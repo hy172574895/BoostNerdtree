@@ -17,6 +17,7 @@ if exists("g:loaded_nerdtree_BosstNERDTree")
 endif
 let g:loaded_nerdtree_BosstNERDTree = 1
 
+
 function! NERDTreePasteFile(dirnode)
   "{{{
   let l:newNodePath = g:NERDTreeDirNode.GetSelected().path.str()
@@ -153,6 +154,28 @@ call NERDTreeAddKeyMap({
       \ 'callback': 'NERDTreeCopyPathToSystemReg',
       \ 'quickhelpText': 'moving the absolute path to reg.',
       \ 'scope': 'Node' })
+
+let g:NERDTreeSearchWithLeaderfRgKey = 
+      \get(g:, 'NERDTreeSearchWithLeaderfRgKeyse_ECY', "gs")
+
+call NERDTreeAddKeyMap({
+      \ 'key': g:NERDTreeSearchWithLeaderfRgKey,
+      \ 'callback': 'NERDTreeSearchWithLeaderfRg',
+      \ 'quickhelpText': 'Search with leaderf.',
+      \ 'scope': 'Node' })
+
+function! g:NERDTreeSearchWithLeaderfRg(dirnode)
+  "{{{
+  let l:CurrenNode = g:NERDTreeFileNode.GetSelected()
+  " let s:NERDTreeBoostCacheNode=l:CurrenNode
+  let l:path = l:CurrenNode.path.str()
+  " let @"=l:path
+  let l:path = tr(l:path, '\', '/')
+  let l:cmd = printf(':Leaderf rg "" %s', l:path)
+  execute l:cmd
+  echo l:path
+  "}}}
+endfunction
 
 function! s:promptToRenameBuffer(bufnum, msg, newFileName)
   echo a:msg
