@@ -134,36 +134,6 @@ function! NERDTreeMoveFile(dirnode)
   "}}}
 endfunction
 
-call NERDTreeAddKeyMap({
-      \ 'key': 'yp',
-      \ 'callback': 'NERDTreePasteFile',
-      \ 'quickhelpText': 'Pasteing the absolute file.',
-      \ 'scope': 'Node' })
-call NERDTreeAddKeyMap({
-      \ 'key': 'yy',
-      \ 'callback': 'NERDTreeCopyFilePath',
-      \ 'quickhelpText': 'Copying the absolute path to reg.',
-      \ 'scope': 'Node' })
-call NERDTreeAddKeyMap({
-      \ 'key': 'ym',
-      \ 'callback': 'NERDTreeMoveFile',
-      \ 'quickhelpText': 'moving the absolute path to reg.',
-      \ 'scope': 'DirNode' })
-call NERDTreeAddKeyMap({
-      \ 'key': 'yc',
-      \ 'callback': 'NERDTreeCopyPathToSystemReg',
-      \ 'quickhelpText': 'moving the absolute path to reg.',
-      \ 'scope': 'Node' })
-
-let g:NERDTreeSearchWithLeaderfRgKey = 
-      \get(g:, 'NERDTreeSearchWithLeaderfRgKeyse_ECY', "gs")
-
-call NERDTreeAddKeyMap({
-      \ 'key': g:NERDTreeSearchWithLeaderfRgKey,
-      \ 'callback': 'NERDTreeSearchWithLeaderfRg',
-      \ 'quickhelpText': 'Search with leaderf.',
-      \ 'scope': 'Node' })
-
 function! NERDTreeSearchWithLeaderfRg(dirnode)
   "{{{
   let l:CurrenNode = g:NERDTreeFileNode.GetSelected()
@@ -176,6 +146,36 @@ function! NERDTreeSearchWithLeaderfRg(dirnode)
   echo l:path
   "}}}
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                   function must be above of add mapping                    "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call NERDTreeAddKeyMap({
+      \ 'key': 'yp',
+      \ 'callback': 'NERDTreePasteFile',
+      \ 'quickhelpText': 'Pasteing the absolute file.',
+      \ 'scope': 'Node' })
+call NERDTreeAddKeyMap({
+      \ 'key': 'yy',
+      \ 'callback': 'NERDTreeCopyFilePath',
+      \ 'quickhelpText': 'Copying the absolute path to reg.',
+      \ 'scope': 'Node' })
+call NERDTreeAddKeyMap({
+      \ 'key': 'gs',
+      \ 'callback': 'NERDTreeSearchWithLeaderfRg',
+      \ 'quickhelpText': 'Search with leaderf.',
+      \ 'scope': 'Node' })
+call NERDTreeAddKeyMap({
+      \ 'key': 'ym',
+      \ 'callback': 'NERDTreeMoveFile',
+      \ 'quickhelpText': 'moving the absolute path to reg.',
+      \ 'scope': 'DirNode' })
+call NERDTreeAddKeyMap({
+      \ 'key': 'yc',
+      \ 'callback': 'NERDTreeCopyPathToSystemReg',
+      \ 'quickhelpText': 'moving the absolute path to reg.',
+      \ 'scope': 'Node' })
+
 
 function! s:promptToRenameBuffer(bufnum, msg, newFileName)
 "{{{
