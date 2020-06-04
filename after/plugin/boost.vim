@@ -164,7 +164,7 @@ call NERDTreeAddKeyMap({
       \ 'quickhelpText': 'Search with leaderf.',
       \ 'scope': 'Node' })
 
-function! g:NERDTreeSearchWithLeaderfRg(dirnode)
+function! NERDTreeSearchWithLeaderfRg(dirnode)
   "{{{
   let l:CurrenNode = g:NERDTreeFileNode.GetSelected()
   " let s:NERDTreeBoostCacheNode=l:CurrenNode
@@ -178,6 +178,7 @@ function! g:NERDTreeSearchWithLeaderfRg(dirnode)
 endfunction
 
 function! s:promptToRenameBuffer(bufnum, msg, newFileName)
+"{{{
   echo a:msg
   if g:NERDTreeAutoDeleteBuffer || nr2char(getchar()) ==# 'y'
     let quotedFileName = fnameescape(a:newFileName)
@@ -194,4 +195,5 @@ function! s:promptToRenameBuffer(bufnum, msg, newFileName)
     " 3. We don't need a previous buffer anymore
     exec "bwipeout! " . a:bufnum
   endif
+"}}}
 endfunction
