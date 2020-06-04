@@ -147,6 +147,22 @@ function! NERDTreeSearchWithLeaderfRg(dirnode)
   "}}}
 endfunction
 
+function! NERDTreeSearchWithLeaderfFile(dirnode)
+  "{{{
+  let l:CurrenNode = g:NERDTreeFileNode.GetSelected()
+  " let s:NERDTreeBoostCacheNode=l:CurrenNode
+  let l:path = l:CurrenNode.path.str()
+  " let @"=l:path
+  let l:path = tr(l:path, '\', '/')
+  if !isdirectory(l:path)
+    let l:path = fnamemodify(l:path, ':p:h')
+  endif
+  let l:cmd = printf(':Leaderf file %s', l:path)
+  execute l:cmd
+  echo l:path
+  "}}}
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                   function must be above of add mapping                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -163,6 +179,11 @@ call NERDTreeAddKeyMap({
 call NERDTreeAddKeyMap({
       \ 'key': 'yt',
       \ 'callback': 'NERDTreeSearchWithLeaderfRg',
+      \ 'quickhelpText': 'Search with leaderf.',
+      \ 'scope': 'Node' })
+call NERDTreeAddKeyMap({
+      \ 'key': 'yf',
+      \ 'callback': 'NERDTreeSearchWithLeaderfFile',
       \ 'quickhelpText': 'Search with leaderf.',
       \ 'scope': 'Node' })
 call NERDTreeAddKeyMap({
